@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PragmaGoTech\Interview\Loan\Application\Service;
+namespace PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator;
 
 use PragmaGoTech\Interview\Loan\Domain\Entity\LoanProposal;
 

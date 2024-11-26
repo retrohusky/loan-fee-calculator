@@ -5,7 +5,8 @@ namespace Unit\Loan\Application\Service;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use PragmaGoTech\Interview\Loan\Application\Dto\FeeStructureDto;
-use PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator;
+use PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator\FeeCalculator;
+use PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator\Strategy\FeeInterpolationStrategy;
 use PragmaGoTech\Interview\Loan\Domain\Entity\LoanProposal;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeTerm;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\LoanAmount;
@@ -22,7 +23,7 @@ class FeeCalculatorTest extends TestCase
     protected function setUp(): void
     {
         $this->feeRepository = $this->createMock(IFeeRepository::class);
-        $this->calculator = new FeeCalculator($this->feeRepository);
+        $this->calculator = new FeeCalculator($this->feeRepository, new FeeInterpolationStrategy());
     }
 
     public function testExactBreakpointReturnsCorrectFee(): void
@@ -113,8 +114,10 @@ class FeeCalculatorTest extends TestCase
             ->willReturn([
                 new FeeStructureDto([
                     'loan' => 1000,
-                    'fee' => 70]),
-                new FeeStructureDto(['loan' => 2000,
+                    'fee' => 70
+                ]),
+                new FeeStructureDto([
+                    'loan' => 2000,
                     'fee' => 100
                 ]),
             ]);

@@ -2,7 +2,7 @@
 
 namespace PragmaGoTech\Interview\Loan\Application\Command\CalculateFee;
 
-use PragmaGoTech\Interview\Loan\Application\Service\IFeeCalculator;
+use PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator\IFeeCalculator;
 use PragmaGoTech\Interview\Loan\Domain\Entity\LoanProposal;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeTerm;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeValue;
@@ -15,7 +15,7 @@ final readonly class CalculateFeeHandler
     ) {
     }
 
-    public function handle(CalculateFeeCommand $command): float
+    public function __invoke(CalculateFeeCommand $command): string
     {
         $loanProposal = new LoanProposal(
             new LoanAmount($command->amount),
@@ -24,6 +24,6 @@ final readonly class CalculateFeeHandler
 
         $fee = new FeeValue($this->feeCalculator->calculate($loanProposal));
 
-        return $fee->getValue();
+        return number_format($fee->getValue(), 2);
     }
 }

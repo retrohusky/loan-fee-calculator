@@ -23,7 +23,7 @@
     },
     "scripts": {
         "lint:cs-fixer": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix src",
-        "lint:stan": "vendor/bin/phpstan analyse src",
+        "lint:stan": "vendor/bin/phpstan analyse src --level 1",
         "test": "vendor/bin/phpunit tests"
     }
 }

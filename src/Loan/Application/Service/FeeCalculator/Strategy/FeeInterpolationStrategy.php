@@ -1,24 +1,13 @@
 <?php
 
-namespace PragmaGoTech\Interview\Loan\Application\Service;
+namespace PragmaGoTech\Interview\Loan\Application\Service\FeeCalculator\Strategy;
 
 use PragmaGoTech\Interview\Loan\Application\Dto\FeeStructureDto;
-use PragmaGoTech\Interview\Loan\Domain\Entity\LoanProposal;
-use PragmaGoTech\Interview\Loan\Infrastructure\Repository\IFeeRepository;
 
-readonly class FeeCalculator implements IFeeCalculator
+class FeeInterpolationStrategy implements IFeeCalculatorStrategy
 {
-    public function __construct(
-        private IFeeRepository $feeRepository
-    ) {
-    }
-
-    public function calculate(LoanProposal $loanProposal): float
+    public function calculate(array $feeStructure, float $loanAmount): float
     {
-        $feeStructure = $this->feeRepository->getFeeStructure($loanProposal->term()->getValue());
-
-        $loanAmount = $loanProposal->amount()->getValue();
-
         $lowerBound = null;
         $upperBound = null;
 
