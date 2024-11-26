@@ -39,7 +39,7 @@ composer install
 ```php
 <?php
 
-use PragmaGoTech\Interview\Model\LoanProposal;
+use PragmaGoTech\Interview\Loan\Infrastructure\Model\LoanProposal;
 
 $calculator = new FeeCalculator();
 
