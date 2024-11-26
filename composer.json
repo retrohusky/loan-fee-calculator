@@ -13,14 +13,17 @@
         }
     },
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "beberlei/assert": "^2.9"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.65",
-        "phpstan/phpstan": "^2.0"
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.4"
     },
     "scripts": {
         "lint:cs-fixer": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix src",
-        "lint:stan": "vendor/bin/phpstan analyse src"
+        "lint:stan": "vendor/bin/phpstan analyse src",
+        "test": "vendor/bin/phpunit tests"
     }
 }
