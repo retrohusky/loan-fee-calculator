@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use PragmaGoTech\Interview\Core\Application\Tools\NumberTool;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeValue;
 
 class FeeValueTest extends TestCase

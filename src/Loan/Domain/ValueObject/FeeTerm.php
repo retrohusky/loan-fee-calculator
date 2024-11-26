@@ -10,12 +10,16 @@ final class FeeTerm extends ValueObject
 {
     public function __construct(mixed $value)
     {
-        Assert::that($value)->notNull()->inArray(FeeTermEnum::cases());
+
+        $validValues = array_map(fn (FeeTermEnum $enum) => $enum->value, FeeTermEnum::cases());
+
+        Assert::that($value)->notNull()->integer()->inArray($validValues);
+
         $this->value = $value;
     }
 
     public function getValue(): int
     {
-        return $this->value->value;
+        return $this->value;
     }
 }

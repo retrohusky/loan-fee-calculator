@@ -2,29 +2,28 @@
 
 declare(strict_types=1);
 
-namespace PragmaGoTech\Interview\Loan\Infrastructure\Model;
+namespace PragmaGoTech\Interview\Loan\Domain\Entity;
+
+use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeTerm;
+use PragmaGoTech\Interview\Loan\Domain\ValueObject\LoanAmount;
 
 /**
  * A cut down version of a loan application containing
  * only the required properties for this test.
  */
-class LoanProposal
+readonly class LoanProposal
 {
-    private int $term;
-
-    private float $amount;
-
-    public function __construct(int $term, float $amount)
-    {
-        $this->term = $term;
-        $this->amount = $amount;
+    public function __construct(
+        private LoanAmount $amount,
+        private FeeTerm $term,
+    ) {
     }
 
     /**
      * Term (loan duration) for this loan application
      * in number of months.
      */
-    public function term(): int
+    public function term(): FeeTerm
     {
         return $this->term;
     }
@@ -32,7 +31,7 @@ class LoanProposal
     /**
      * Amount requested for this loan application.
      */
-    public function amount(): float
+    public function amount(): LoanAmount
     {
         return $this->amount;
     }

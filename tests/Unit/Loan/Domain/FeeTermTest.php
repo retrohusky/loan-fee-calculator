@@ -8,13 +8,13 @@ class FeeTermTest extends TestCase
 {
     public function testValidFeeTerm()
     {
-        $term = new FeeTerm(FeeTermEnum::TWELVE_MONTHS);
+        $term = new FeeTerm(FeeTermEnum::TWELVE_MONTHS->value);
         $this->assertEquals(12, $term->getValue());
     }
 
     public function testAnotherValidFeeTerm()
     {
-        $term = new FeeTerm(FeeTermEnum::TWENTY_FOUR_MONTHS);
+        $term = new FeeTerm(FeeTermEnum::TWENTY_FOUR_MONTHS->value);
         $this->assertEquals(24, $term->getValue());
     }
 

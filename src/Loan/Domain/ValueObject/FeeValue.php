@@ -3,7 +3,7 @@
 namespace PragmaGoTech\Interview\Loan\Domain\ValueObject;
 
 use Assert\Assert;
-use PragmaGoTech\Interview\Core\Application\Tools\NumberTool;
+use PragmaGoTech\Interview\Core\Application\Tools\NumberRoundingTool;
 use PragmaGoTech\Interview\Core\Domain\ValueObject;
 
 final class FeeValue extends ValueObject
@@ -16,6 +16,6 @@ final class FeeValue extends ValueObject
 
     public function getValue(): float
     {
-        return NumberTool::roundInt($this->value, 5);
+        return NumberRoundingTool::roundUpToNearestMultiple($this->value, 5);
     }
 }

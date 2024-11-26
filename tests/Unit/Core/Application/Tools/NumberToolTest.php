@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use PragmaGoTech\Interview\Core\Application\Tools\NumberTool;
+use PragmaGoTech\Interview\Core\Application\Tools\NumberRoundingTool;
 
 class NumberToolTest extends TestCase
 {
@@ -9,7 +9,7 @@ class NumberToolTest extends TestCase
     {
         $value = 123.456;
         $dividend = 5;
-        $this->assertEquals(125, NumberTool::roundInt($value, $dividend));
+        $this->assertEquals(125, NumberRoundingTool::roundUpToNearestMultiple($value, $dividend));
     }
 
     public function testRoundIntPositiveValueWithDifferentDividend()
@@ -17,7 +17,7 @@ class NumberToolTest extends TestCase
         $value = 123.456;
         $dividend = 10;
 
-        $this->assertEquals(120, NumberTool::roundInt($value, $dividend));
+        $this->assertEquals(130, NumberRoundingTool::roundUpToNearestMultiple($value, $dividend));
     }
 
     public function testRoundIntNegativeValue()
@@ -25,7 +25,7 @@ class NumberToolTest extends TestCase
         $value = -123.456;
         $dividend = 5;
 
-        $this->assertEquals(-125, NumberTool::roundInt($value, $dividend));
+        $this->assertEquals(-120, NumberRoundingTool::roundUpToNearestMultiple($value, $dividend));
     }
 
     public function testRoundIntZeroDividend()
@@ -33,7 +33,7 @@ class NumberToolTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Dividend must be greater than 0');
 
-        NumberTool::roundInt(123.456, 0);
+        NumberRoundingTool::roundUpToNearestMultiple(123.456, 0);
     }
 
     public function testRoundIntNegativeDividend()
@@ -41,6 +41,6 @@ class NumberToolTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Dividend must be greater than 0');
 
-        NumberTool::roundInt(123.456, -5);
+        NumberRoundingTool::roundUpToNearestMultiple(123.456, -5);
     }
 }
