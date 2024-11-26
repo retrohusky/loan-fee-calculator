@@ -12,6 +12,11 @@
             "PragmaGoTech\\Interview\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^8.3",
         "beberlei/assert": "^2.9"

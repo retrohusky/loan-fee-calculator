@@ -1,101 +1,96 @@
-PragmaGO.TECH Interview Test - Fee Calculation
-=====
+# Loan Fee Calculator
 
-## Background
+**Loan Fee Calculator** is a project that calculates loan fees based on given parameters such as **loan amount** and **term (in months)**.
 
-This test is designed to evaluate your problem solving approach and your engineering ability. Design your solution in a way that shows your knowledge of OOP concepts, SOLID principles, design patterns, clean and extensible architecture.
+## Requirements
+- **PHP**: version **8.1+** (recommended **8.3** for best support).
+- **Composer**: for dependency management.
+- **Docker**: optional, for running the application in a container.
 
-Provide a test suite verifying your solution, use any testing framework you feel comfortable with. Use any libraries (or none) you feel add value to your solution. Treat the packaged project as a template; if you feel that your solution can be improved with modifications to it then please go ahead.
+## Installation and Running
 
-## The test
+### 1. Locally
 
-The requirement is to build a fee calculator that - given a monetary **amount** and a **term** (the contractual duration of the loan, expressed as a number of months) - will produce an appropriate fee for a loan, based on a fee structure and a set of rules described below. A general contract for this functionality is defined in the interface `FeeCalculator`.
+#### Step 1: Clone the repository
 
-Implement your solution such that it fulfils the requirements.
+```bash
+git clone <repo-url>
+cd loan-fee-calculator
+```
 
-- The fee structure does not follow a formula.
-- Values in between the breakpoints should be interpolated linearly between the lower bound and upper bound that they fall between.
-- The number of breakpoints, their values, or storage might change.
-- The term can be either 12 or 24 (number of months), you can also assume values will always be within this set.
-- The fee should be rounded up such that fee + loan amount is an exact multiple of 5.
-- The minimum amount for a loan is 1,000 PLN, and the maximum is 20,000 PLN.
-- You can assume values will always be within this range but they may be any value up to 2 decimal places.
+#### Step 2: Install dependencies
 
-Example inputs/outputs:
-|Loan amount  |Term       |Fee     |
-|-------------|-----------|--------|
-|11,500 PLN   |24 months  |460 PLN |
-|19,250 PLN   |12 months  |385 PLN |
-
-# Installation
-A database or any other external dependency is not required for this test.
+You need to have **Composer** installed. Then run:
 
 ```bash
 composer install
 ```
 
-# Example
+#### Step 3: Run the application
 
-```php
-<?php
+You can run the application directly in the terminal using PHP:
 
-use PragmaGoTech\Interview\Loan\Domain\Entity\LoanProposal;
-
-$calculator = new FeeCalculator();
-
-$application = new LoanProposal(24, 2750);
-$fee = $calculator->calculate($application);
-// $fee = (float) 115.0
+```bash
+php calculate-fee.php
 ```
 
-# Fee Structure
-The fee structure doesn't follow particular algorithm and it is possible that same fee will be applicable for different amounts.
+Enter values such as the loan amount and term (e.g., 12 or 24 months).
 
-### Term 12
-```
-1000 PLN: 50 PLN
-2000 PLN: 90 PLN
-3000 PLN: 90 PLN
-4000 PLN: 115 PLN
-5000 PLN: 100 PLN
-6000 PLN: 120 PLN
-7000 PLN: 140 PLN
-8000 PLN: 160 PLN
-9000 PLN: 180 PLN
-10000 PLN: 200 PLN
-11000 PLN: 220 PLN
-12000 PLN: 240 PLN
-13000 PLN: 260 PLN
-14000 PLN: 280 PLN
-15000 PLN: 300 PLN
-16000 PLN: 320 PLN
-17000 PLN: 340 PLN
-18000 PLN: 360 PLN
-19000 PLN: 380 PLN
-20000 PLN: 400 PLN
+### 2. Running with Docker
+
+If you want to run the project in a container, you can use **Docker Compose**.
+
+#### Step 1: Build the image
+
+Build the images using **Makefile**:
+
+```bash
+make build
 ```
 
-### Term 24
+#### Step 2: Install dependencies with Composer
 
+Use the following command to install dependencies in the container:
+
+```bash
+make composer
 ```
-1000 PLN: 70 PLN
-2000 PLN: 100 PLN
-3000 PLN: 120 PLN
-4000 PLN: 160 PLN
-5000 PLN: 200 PLN
-6000 PLN: 240 PLN
-7000 PLN: 280 PLN
-8000 PLN: 320 PLN
-9000 PLN: 360 PLN
-10000 PLN: 400 PLN
-11000 PLN: 440 PLN
-12000 PLN: 480 PLN
-13000 PLN: 520 PLN
-14000 PLN: 560 PLN
-15000 PLN: 600 PLN
-16000 PLN: 640 PLN
-17000 PLN: 680 PLN
-18000 PLN: 720 PLN
-19000 PLN: 760 PLN
-20000 PLN: 800 PLN
+
+#### Step 3: Run the application in the container
+
+Run the PHP container and the application with:
+
+```bash
+make run
 ```
+
+## Makefile Commands
+
+- **`make build`** - Builds the containers for the application.
+- **`make composer`** - Runs Composer in the container to install dependencies.
+- **`make run`** - Runs the PHP container once, which executes the `calculate-fee.php` script.
+- **`make lint`** - Runs the linter to ensure that the code adheres to the standards.
+- **`make test`** - Runs unit and integration tests using PHPUnit.
+
+## Testing
+
+The project contains a set of unit and integration (todo) tests to ensure the correct functioning of the application.
+
+To run the tests, you can use the following command:
+
+```bash
+make test
+```
+
+## Linting
+
+To ensure that the code meets all style and quality requirements, run:
+
+```bash
+make lint
+```
+
+## Directory Structure
+- **src/**: Main directory for application source code.
+- **tests/**: Contains all unit and integration (TODO someday) tests.
+- **vendor/**: Directory for dependencies, generated by Composer.

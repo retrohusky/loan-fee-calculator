@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Loan\Domain;
+
 use PHPUnit\Framework\TestCase;
 use PragmaGoTech\Interview\Loan\Domain\Enum\FeeTermEnum;
 use PragmaGoTech\Interview\Loan\Domain\ValueObject\FeeTerm;
