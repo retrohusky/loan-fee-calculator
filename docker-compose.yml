@@ -1,12 +1,17 @@
 services:
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: fee_calculator_php
-    command: php calculate-fee.php
-
   composer:
     image: composer:2
     container_name: fee_composer
-    command: install
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["install"]
+
+  php:
+    image: php:8.3-cli
+    container_name: fee_calculator_php
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["php"]
+    command: ["calculate-fee.php"]
