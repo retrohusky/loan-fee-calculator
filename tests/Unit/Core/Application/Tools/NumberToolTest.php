@@ -5,7 +5,6 @@ namespace Tests\Unit\Core\Application\Tools;
 use PHPUnit\Framework\TestCase;
 use PragmaGoTech\Interview\Core\Application\Tools\NumberRoundingTool;
 
-
 class NumberToolTest extends TestCase
 {
     public function testRoundIntPositiveValue()

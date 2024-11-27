@@ -34,21 +34,13 @@ You can run the application directly in the terminal using PHP:
 php calculate-fee.php
 ```
 
-Enter values such as the loan amount and term (e.g., 12 or 24 months).
+Enter values such as the loan amount (minimum value 1000 | maximum value: 20,000) and term (Accepted values: [12, 24])
 
 ### 2. Running with Docker
 
 If you want to run the project in a container, you can use **Docker Compose**.
 
-#### Step 1: Build the image
-
-Build the images using **Makefile**:
-
-```bash
-make build
-```
-
-#### Step 2: Install dependencies with Composer
+#### Step 1: Install dependencies with Composer
 
 Use the following command to install dependencies in the container:
 
@@ -56,7 +48,7 @@ Use the following command to install dependencies in the container:
 make composer
 ```
 
-#### Step 3: Run the application in the container
+#### Step 2: Run the application in the container
 
 Run the PHP container and the application with:
 
@@ -66,7 +58,6 @@ make run
 
 ## Makefile Commands
 
-- **`make build`** - Builds the containers for the application.
 - **`make composer`** - Runs Composer in the container to install dependencies.
 - **`make run`** - Runs the PHP container once, which executes the `calculate-fee.php` script.
 - **`make lint`** - Runs the linter to ensure that the code adheres to the standards.
